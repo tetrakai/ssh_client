@@ -1,3 +1,27 @@
+'''SSH utilities module.
+
+Contains functions to convert data into the types required for the SSH protocol, as defined in
+https://tools.ietf.org/html/rfc2440. Specifically, this module contains parse and generate functions
+for:
+ - bytes,
+ - uint32s,
+ - strings,
+ - name_lists, and
+ - mpints.
+
+The parse functions in this list take an array of data, and an index from which to start parsing,
+and return the index at which their data ended, and the data itself.
+
+Example:
+  To parse an mpint followed by a string, from the start of the array `data`
+
+    index, my_mpint = parse_mpint(data, 0)
+    index, my_string = parse_string(data, index)
+
+This module also contains utility functions for generating secure random bytes (`random_bytes`), and
+for getting 32 byte (256 bit) binary network order representations of numbers.
+'''
+
 # pylint: disable=missing-docstring
 
 import struct
